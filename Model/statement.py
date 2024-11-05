@@ -1,5 +1,4 @@
 from .connection import *
-import json
 
 def excuteStatement(query,values):
     dbCon = connect()

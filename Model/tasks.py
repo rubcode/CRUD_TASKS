@@ -17,7 +17,7 @@ def insertTask(task, deadline):
     return response
 
 def updateTask(task,deadline,ID):
-    query  = "UPDATE tasks SET task = %s, deadline= %s WHERE ID = %s"
+    query  = "UPDATE tasks SET task = %s, deadline= %s WHERE id = %s"
     values = (task,deadline,ID)
     response = excuteStatement(query,values)
     if(response['code'] == "000"):
@@ -27,7 +27,7 @@ def updateTask(task,deadline,ID):
 def deleteTask(ID):
     query  = "DELETE FROM tasks WHERE id= %s"
     values = (ID,)
-    response = json.loads(excuteStatement(query,values))
+    response = excuteStatement(query,values)
     if(response['code'] == "000"):
         return {"code": "000","description": "Tarea eliminada correctamente"}
     return response

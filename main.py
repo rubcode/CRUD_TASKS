@@ -2,14 +2,25 @@ from Model.tasks import *
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
+origins = [
+    "http://localhost:3000",
+]
 
 class Task(BaseModel):
     task: str
     deadline: str
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"], 
+)
 
 @app.get("/")
 def bienvenida():
