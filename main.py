@@ -11,6 +11,7 @@ origins = [
 class Task(BaseModel):
     task: str
     deadline: str
+    status: str
 
 app = FastAPI()
 
@@ -33,13 +34,13 @@ def getTasksAPI():
 
 @app.post("/tasks")
 def addTaskApi(task: Task):
-    response = insertTask(task.task,task.deadline)
+    response = insertTask(task.task,task.deadline,task.status)
     return response
     
 
 @app.put("/tasks/{task_id}")
 def addTaskApi(task: Task,task_id: int):
-    response = updateTask(task.task,task.deadline,task_id)
+    response = updateTask(task.task,task.deadline,task.status,task_id)
     return response
 
 @app.delete("/tasks/{task_id}")

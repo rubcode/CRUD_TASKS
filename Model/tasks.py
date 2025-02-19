@@ -8,17 +8,17 @@ def getTaks():
     tasks = selectData(query)
     return tasks
 
-def insertTask(task, deadline):
-    query  = "INSERT INTO tasks (task, deadline) VALUES(%s,%s)"
-    values = (task,deadline)
+def insertTask(task, deadline,status="pendiente"):
+    query  = "INSERT INTO tasks (task, deadline,status) VALUES(%s,%s,%s)"
+    values = (task,deadline,status)
     response = excuteStatement(query,values)
     if(response['code'] == "000"):
         return {"code": "000","description": "Tarea insertada correctamente"}
     return response
 
-def updateTask(task,deadline,ID):
-    query  = "UPDATE tasks SET task = %s, deadline= %s WHERE id = %s"
-    values = (task,deadline,ID)
+def updateTask(task,deadline,status,ID):
+    query  = "UPDATE tasks SET task = %s, deadline= %s, status =%s WHERE id = %s"
+    values = (task,deadline,status,ID)
     response = excuteStatement(query,values)
     if(response['code'] == "000"):
         return {"code": "000","description": "Tarea actualizada correctamente"}
